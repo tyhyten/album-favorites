@@ -2,4 +2,7 @@ README
 
 ----
 
-List app in Angular.# album-favorites
+List exercise in Angular.
+
+To run:
+python -m SimpleHTTPServer 8989

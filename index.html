@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="AlbumFavorites">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+<body ng-controller="AlbumCtrl">
+  <div class="container-fluid">
+    <div class="col-md-4">
+      <ul class="nav nav-pills nav-stacked">
+        <li role="presentation" ng-repeat="genre in genres">
+          <a href="#" ng-click="setCurrentGenre(genre)">{{genre.name}}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-8">
+      <div class="list-group" ng-repeat="album in albums | filter:{name:currentGenre.name}">
+        <a href="#album" class="list-group-item active">
+          <h4 class="list-group-item-heading">{{album.albumName}}</h4>
+          <p class="list-group-item-text"><b>{{album.artist}}</b> <em>{{album.year}}</em></p>
+          <button type="button" class="btn btn-default glyphicon glyphicon-remove" aria-label="Right Align">
+            <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+<script src="app/album-favorites.js"></script>
+
+</body>
+</html>
