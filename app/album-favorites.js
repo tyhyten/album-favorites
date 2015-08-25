@@ -78,6 +78,13 @@ angular.module('AlbumFavorites', [
             console.log($scope.albums[index]);
         }
 
+        function deleteAlbum(album) {
+            _.remove($scope.albums, function(alb){
+                return alb.id == album.id;
+            });
+        }
+
+        $scope.deleteAlbum = deleteAlbum;
         $scope.createAlbum = createAlbum;
         $scope.updateAlbum = updateAlbum;
 

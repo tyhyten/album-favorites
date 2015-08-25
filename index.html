@@ -24,7 +24,7 @@
       <a href="#album" class="list-group-item active">
         <h4 class="list-group-item-heading">{{album.albumName}}</h4>
         <p class="list-group-item-text"><b>{{album.artist}}</b> <em>{{album.year}}</em></p>
-        <button type="button" class="btn btn-default glyphicon glyphicon-remove" aria-label="Right Align"></button>
+        <button type="button" class="btn btn-default glyphicon glyphicon-remove" ng-click="deleteAlbum(album)" aria-label="Right Align"></button>
         <button type="button" class="btn btn-default" ng-click="setEditedAlbum(album);startEditing();"><span class="glyphicon glyphicon-pencil"></span></button>
       </a>
     </div>
