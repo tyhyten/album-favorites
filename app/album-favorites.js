@@ -1,6 +1,18 @@
 angular.module('AlbumFavorites', [
-
+    'ui.router',
+    'genres',
+    'genres.albums'
 ])
+    .config(function($stateProvider, $urlRouterProvider){
+        $stateProvider
+            .state('albumFavorites', {
+                url: '',
+                abstract: true
+            })
+        ;
+
+        $urlRouterProvider.otherwise('/');
+    })
     .controller('AlbumCtrl', function ($scope) {
         $scope.genres = [
             {"id": 0, "name": "Rock"},

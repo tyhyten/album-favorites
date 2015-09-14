@@ -1,0 +1,66 @@
+  <div class="list-group" ng-repeat="album in albums | filter:{name:currentGenre.name}">
+    <a href="#album" class="list-group-item active">
+      <h4 class="list-group-item-heading">{{album.albumName}}</h4>
+      <p class="list-group-item-text"><b>{{album.artist}}</b> <em>{{album.year}}</em></p>
+      <button type="button" class="btn btn-default glyphicon glyphicon-remove" ng-click="deleteAlbum(album)" aria-label="Right Align"></button>
+      <button type="button" class="btn btn-default" ng-click="setEditedAlbum(album);startEditing();"><span class="glyphicon glyphicon-pencil"></span></button>
+    </a>
+  </div>
+  <span>Add an Album</span>
+
+  <button type="button" class="btn btn-default" ng-click="startCreating()"><span class="glyphicon glyphicon-plus"></span></button>
+
+  <div ng-if="shouldShowCreating()">
+    <form class="create-form" role="form" ng-show="isCreating" ng-submit="createAlbum(newAlbum)" novalidate>
+      <div class="form-group">
+        <label for="newAlbumAlbumName">Album Name</label>
+        <input type="text" class="form-control" id="newAlbumAlbumName" ng-model="newAlbum.albumName" placeholder="Album Name">
+      </div>
+      <div class="form-group">
+        <label for="newAlbumArtist">Artist</label>
+        <input type="text" class="form-control" id="newAlbumArtist" ng-model="newAlbum.artist" placeholder="Artist Name">
+      </div>
+      <div class="form-group">
+        <label for="newAlbumYear">Year</label>
+        <input type="text" class="form-control" id="newAlbumYear" ng-model="newAlbum.year" placeholder="Year">
+      </div>
+      <div class="form-group">
+        <label for="genreName">Genre</label>
+        <select class="form-control" id="genreName" ng-model="newAlbum.name">
+          <option>Rock</option>
+          <option>Hip-Hop</option>
+          <option>Folk</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-default" ng-click="cancelCreating()">Close</button>
+      <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+  </div>
+
+  <div ng-if="shouldShowEditing()">
+    <form class="edit-form" role="form"  ng-submit="updateAlbum(editedAlbum)" novalidate>
+      <div class="form-group">
+        <label>Album Name</label>
+        <input type="text" class="form-control" ng-model="editedAlbum.albumName" placeholder="Album Name">
+      </div>
+      <div class="form-group">
+        <label>Artist</label>
+        <input type="text" class="form-control" ng-model="editedAlbum.artist" placeholder="Artist Name">
+      </div>
+      <div class="form-group">
+        <label>Year</label>
+        <input type="text" class="form-control" ng-model="editedAlbum.year" placeholder="Year">
+      </div>
+      <div class="form-group">
+        <label>Genre</label>
+        <select class="form-control" ng-model="editedAlbum.name">
+          <option>Rock</option>
+          <option>Hip-Hop</option>
+          <option>Folk</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-default" ng-click="cancelEditing()">Close</button>
+      <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+  </div>
+
