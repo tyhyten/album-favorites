@@ -21,8 +21,3 @@ angular.module('genres', [
   .controller('GenresCtrl', function GenresCtrl($scope){
 
   })
-
-  .controller('AlbumsCtrl', function AlbumsCtrl($scope){
-
-
-  });

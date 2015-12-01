@@ -1,3 +1,4 @@
+<h1>{{currentGenreName}}</h1>
   <div class="list-group" ng-repeat="album in albums | filter:{name:currentGenre.name}">
     <a href="#album" class="list-group-item active">
       <h4 class="list-group-item-heading">{{album.albumName}}</h4>

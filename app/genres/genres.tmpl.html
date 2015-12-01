@@ -1,9 +1,9 @@
   <ul class="nav nav-pills nav-stacked">
     <li role="presentation" ng-repeat="genre in genres">
-      <a href="#" ng-click="setCurrentGenre(genre)">{{genre.name}}</a>
+      <a ng-click="setCurrentGenre(genre)">{{genre.name}}</a>
     </li>
     <li role="presentation">
-      <a href="#" ng-click="clearGenre()">All</a>
+      <a ng-click="clearGenre()">All</a>
     </li>
   </ul>
 
