@@ -13,7 +13,7 @@ angular.module('AlbumFavorites', [
 
         $urlRouterProvider.otherwise('/');
     })
-    .controller('AlbumCtrl', function ($scope) {
+    .controller('AlbumCtrl', function ($scope, $state) {
         $scope.genres = [
             {"id": 0, "name": "Rock"},
             {"id": 1, "name": "Hip-Hop"},
@@ -42,6 +42,7 @@ angular.module('AlbumFavorites', [
 
         function setCurrentGenre(genre) {
             $scope.currentGenre = genre;
+            //$state.go('albumFavorites.genres.albums', {genre:genre.name});
 
             cancelCreating;
             cancelEditing;
@@ -61,7 +62,6 @@ angular.module('AlbumFavorites', [
         $scope.setEditedAlbum = setEditedAlbum;
 
         function resetCreateForm() {
-            console.log('hello world');
             $scope.newAlbum = {
                 albumName: '',
                 artist: '',
