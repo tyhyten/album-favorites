@@ -1,14 +1,23 @@
 angular.module('albumFavorites.models.genres', [
 
 ])
-  .service('GenresModel', function(){
+  .service('GenresModel', function($http){
     var model = this,
-      genres = [
-        {"id": 0, "name": "Rock"},
-        {"id": 1, "name": "Hip-Hop"},
-        {"id": 2, "name": "Folk"}
-      ];
-    model.getGenres = function(){
+      URLS = {
+        FETCH: 'data/genres.json'
+      },
+      genres;
+
+    function extract(result) {
+      return result.data;
+    }
+
+    function cacheGenres(result) {
+      genres = extract(result);
       return genres;
+    }
+
+    model.getGenres = function(){
+      return $http.get(URLS.FETCH).then(cacheGenres);
     }
 });

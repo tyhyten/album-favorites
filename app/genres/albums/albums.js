@@ -20,6 +20,9 @@ angular.module('genres.albums', [
   .controller('AlbumsListCtrl', function ($stateParams, AlbumsModel) {
     var albumsListCtrl = this;
     albumsListCtrl.currentGenreName = $stateParams.genre;
-    albumsListCtrl.albums = AlbumsModel.getAlbums();
+    AlbumsModel.getAlbums()
+      .then(function(result){
+        albumsListCtrl.albums = result;
+      });
   })
 ;

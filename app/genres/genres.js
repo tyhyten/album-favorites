@@ -20,5 +20,11 @@ angular.module('genres', [
 
   .controller('GenresListCtrl', function GenresListCtrl(GenresModel){
     var genresListCtrl = this;
-    genresListCtrl.genres = GenresModel.getGenres();
-  });
+
+    GenresModel.getGenres()
+      .then(function(result) {
+        genresListCtrl.genres = result;
+        console.log('result', result);
+    });
+  })
+;
