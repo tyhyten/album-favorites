@@ -1,7 +1,7 @@
 angular.module('albumFavorites.models.genres', [
 
 ])
-  .service('GenresModel', function($http){
+  .service('GenresModel', function($http, $q){
     var model = this,
       URLS = {
         FETCH: 'data/genres.json'
@@ -18,6 +18,26 @@ angular.module('albumFavorites.models.genres', [
     }
 
     model.getGenres = function(){
-      return $http.get(URLS.FETCH).then(cacheGenres);
-    }
+      return (genres) ? $q.when(genres) : $http.get(URLS.FETCH).then(cacheGenres);
+    };
+
+    model.getGenreByName = function() {
+      var deferred = $q.defer();
+
+      function findGenre() {
+        return _.find(genres, function(g){
+          return g.name == genreName;
+        })
+      }
+
+      if(genres){
+        deferred.resolve(findGenre());
+      } else {
+        model.getGenres()
+          .then(function(result){
+            deferred.resolve(findGenre());
+          })
+      }
+      return deferred.promise;
+    };
 });
