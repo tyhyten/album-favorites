@@ -3,7 +3,7 @@ angular.module('AlbumFavorites', [
     'genres',
     'genres.albums'
 ])
-    .config(function($stateProvider, $urlRouterProvider){
+    .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('albumFavorites', {
                 url: '',
@@ -13,28 +13,11 @@ angular.module('AlbumFavorites', [
 
         $urlRouterProvider.otherwise('/');
     })
-    .controller('AlbumCtrl', function ($scope, $state) {
-        $scope.genres = [
-            {"id": 0, "name": "Rock"},
-            {"id": 1, "name": "Hip-Hop"},
-            {"id": 2, "name": "Folk"}
-        ];
-
-        $scope.albums = [
-            {"id": 0, "artist": "Sharon Van Etten", "albumName": "I Don't Want to Let You Down", "year":"2015", "name": "Rock"},
-            {"id": 1, "artist": "Nathaniel Rateliff", "albumName": "Nathaniel Rateliff", "year": "2015", "name": "Rock"},
-            {"id": 2, "artist": "Gregory Alan Isakov", "albumName": "The Weatherman", "year": "2014", "name": "Folk"},
-            {"id": 3, "artist": "Kendrick Lamar", "albumName": "PeanutButterfly", "year": "2015", "name": "Hip-Hop"},
-            {"id": 4, "artist": "Meatloaf", "albumName": "Meatloaf", "year": "2015", "name": "Rock"},
-            {"id": 5, "artist": "Shaq", "albumName": "Magic", "year": "2015", "name": "Hip-Hop"},
-            {"id": 6, "artist": "Slayer", "albumName": "Spaghetti", "year": "2015", "name": "Rock"},
-            {"id": 6, "artist": "Spoon", "albumName": "Meatloaf", "year": "2015", "name": "Rock"}
-        ];
+    .controller('MasterCtrl', function ($scope, $state) {
         $scope.currentGenre = null;
         $scope.isEditing = false;
         $scope.isCreating = false;
         $scope.editedAlbum = null;
-
 
         function isCurrentGenre(genre) {
             return $scope.currentGenre !== null && genre.name === $scope.currentGenre.name;
@@ -44,9 +27,13 @@ angular.module('AlbumFavorites', [
             $scope.currentGenre = genre;
             //$state.go('albumFavorites.genres.albums', {genre:genre.name});
 
-            cancelCreating;
-            cancelEditing;
+            cancelCreating();
+            cancelEditing();
         }
+
+        $scope.isCurrentGenre = isCurrentGenre;
+        $scope.setCurrentGenre = setCurrentGenre;
+
 
         function clearGenre() {
             $scope.currentGenre = null;
@@ -56,8 +43,6 @@ angular.module('AlbumFavorites', [
             $scope.editedAlbum = angular.copy(album);
         }
 
-        $scope.isCurrentGenre = isCurrentGenre;
-        $scope.setCurrentGenre = setCurrentGenre;
         $scope.clearGenre = clearGenre;
         $scope.setEditedAlbum = setEditedAlbum;
 
@@ -139,4 +124,5 @@ angular.module('AlbumFavorites', [
         $scope.startEditing = startEditing;
         $scope.cancelEditing = cancelEditing;
 
-  });
+  })
+;

@@ -7,17 +7,18 @@ angular.module('genres', [
         url: '/',
         views: {
           'genres@': {
-            controller: 'GenresCtrl',
+            controller: 'GenresListCtrl as genresListCtrl',
             templateUrl: 'app/genres/genres.tmpl.html'
           },
           'albums@' : {
-            controller: 'AlbumsCtrl',
+            controller: 'AlbumsListCtrl as albumsListCtrl',
             templateUrl: 'app/genres/albums/albums.tmpl.html'
           }
         }
-      })
+      });
   })
 
-  .controller('GenresCtrl', function GenresCtrl($scope){
-
-  })
+  .controller('GenresListCtrl', function GenresListCtrl(GenresModel){
+    var genresListCtrl = this;
+    genresListCtrl.genres = GenresModel.getGenres();
+  });

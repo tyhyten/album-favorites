@@ -1,6 +1,6 @@
   <ul class="nav nav-pills nav-stacked">
-    <li role="presentation" ng-repeat="genre in genres">
-      <a ui-sref="albumFavorites.genres.albums({genre:genre.name})" ng-click="setCurrentGenre(genre)">{{genre.name}}</a>
+    <li role="presentation" ng-repeat="genre in genresListCtrl.genres">
+      <a ui-sref="albumFavorites.genres.albums({genre:genre.name})">{{genre.name}}</a>
     </li>
     <li role="presentation">
       <a ng-click="clearGenre()">All</a>

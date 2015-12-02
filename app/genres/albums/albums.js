@@ -11,13 +11,15 @@ angular.module('genres.albums', [
         views: {
           'albums@': {
               templateUrl: 'app/genres/albums/albums.tmpl.html',
-              controller: 'AlbumsCtrl'
+              controller: 'AlbumsListCtrl as albumsListCtrl'
           }
         }
       })
     ;
   })
-  .controller('AlbumsCtrl', function($scope,$stateParams ){
-    $scope.currentGenreName = $stateParams.genre;
+  .controller('AlbumsListCtrl', function ($stateParams, AlbumsModel) {
+    var albumsListCtrl = this;
+    albumsListCtrl.currentGenreName = $stateParams.genre;
+    albumsListCtrl.albums = AlbumsModel.getAlbums();
   })
 ;
